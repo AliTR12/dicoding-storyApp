@@ -33,6 +33,7 @@ class HomePresenter {
     }
     const map = L.map("homeMap").setView([-7.0, 110.0], 5);
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
+    map.dragging.enable();
     setTimeout(() => {
       map.invalidateSize();
     }, 300);

@@ -31,12 +31,13 @@ if (lat && lon) {
   const mapEl = document.getElementById("storyMap");
   if (mapEl?._leaflet_id != null) mapEl._leaflet_id = null;
 
-  const map = L.map("storyMap").setView([lat, lon], 12);
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
-  setTimeout(() => {
-    map.invalidateSize();
-  }, 300);
-  L.marker([lat, lon], { icon: customIcon}).addTo(map).bindPopup(`<strong>${name}</strong><br>${description}`);
+    const map = L.map("storyMap").setView([lat, lon], 12);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
+    map.dragging.enable();
+    setTimeout(() => {
+      map.invalidateSize();
+    }, 300);
+    L.marker([lat, lon], { icon: customIcon}).addTo(map).bindPopup(`<strong>${name}</strong><br>${description}`);
 }
 
 async function getCityFromCoords(lat, lon) {

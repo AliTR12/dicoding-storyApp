@@ -121,8 +121,9 @@ class NewPresenter {
   
       this._map = L.map("map").setView([-7.0639, 110.9504], 12);
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(this._map);
+      this._map.dragging.enable();
       setTimeout(() => {
-        map.invalidateSize();
+        this._map.invalidateSize();
       }, 300);
   
       let marker;
