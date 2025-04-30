@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="favicon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
+
+    <title>App</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <div class="main-header container">
+          <a class="brand-name" href="#/">App</a>
+          <a href="#main-content" class="skip-link">Skip to content</a>
+
+          <nav id="navigation-drawer" class="navigation-drawer">
+            <ul id="nav-list" class="nav-list">
+              <li><a href="#/">Beranda</a></li>
+              <li><a href="#/about">About</a></li>
+              <li><a href="#/login">Login</a></li>
+              <li><a href="#/register">Register</a></li>
+              <li><a href="#" id="logout-btn">Logout</a></li>
+              <li><a href="#/new">Tambah Story</a></li>
+            </ul>
+          </nav>
+
+          <button id="drawer-button" class="drawer-button">☰</button>
+        </div>
+      </header>
+
+      <main id="main-content" class="main-content"></main>
+      <footer>
+        <p>© 2025 Story Dicoding App. All rights reserved.</p>
+        <p>Created by Ali Tawfiqur Rahman</p>
+      </footer>
+    </div>
+  </body>
+</html>
