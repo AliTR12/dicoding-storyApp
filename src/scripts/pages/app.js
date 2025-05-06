@@ -1,5 +1,6 @@
-import routes from '../routes/routes';
-import { getActiveRoute } from '../routes/url-parser';
+import routes from "../routes/routes";
+import { getActiveRoute } from "../routes/url-parser";
+import { renderNavBasedOnAuth } from "../utils/ui";
 
 class App {
   #content = null;
@@ -15,27 +16,28 @@ class App {
   }
 
   _setupDrawer() {
-    this.#drawerButton.addEventListener('click', () => {
-      this.#navigationDrawer.classList.toggle('open');
+    this.#drawerButton.addEventListener("click", () => {
+      this.#navigationDrawer.classList.toggle("open");
     });
 
-    document.body.addEventListener('click', (event) => {
+    document.body.addEventListener("click", (event) => {
       if (!this.#navigationDrawer.contains(event.target) && !this.#drawerButton.contains(event.target)) {
-        this.#navigationDrawer.classList.remove('open');
+        this.#navigationDrawer.classList.remove("open");
       }
 
-      this.#navigationDrawer.querySelectorAll('a').forEach((link) => {
+      this.#navigationDrawer.querySelectorAll("a").forEach((link) => {
         if (link.contains(event.target)) {
-          this.#navigationDrawer.classList.remove('open');
+          this.#navigationDrawer.classList.remove("open");
         }
-      })
+      });
     });
   }
 
   async renderPage() {
     const url = getActiveRoute();
-    console.log('💡 Route parsed:', url); 
-    const page = routes[url];
+    console.log("💡 Route parsed:", url);
+    const pageFactory = routes[url];
+    const page =  await pageFactory();
 
     if (!page) {
       this.#content.innerHTML = `<h1>404 Halaman Tidak Ditemukan</h1>`;
@@ -44,10 +46,12 @@ class App {
     if (document.startViewTransition) {
       await document.startViewTransition(async () => {
         this.#content.innerHTML = await page.render();
+        await renderNavBasedOnAuth(this.#navigationDrawer);
         await page.afterRender();
       });
     }
     this.#content.innerHTML = await page.render();
+    await renderNavBasedOnAuth(this.#navigationDrawer);
     await page.afterRender();
   }
 }

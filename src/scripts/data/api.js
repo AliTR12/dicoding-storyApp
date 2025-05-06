@@ -1,4 +1,5 @@
 import CONFIG from '../config';
+import { getAccessToken } from '../utils/auth';
 
 const ENDPOINTS = {
   STORIES: `${CONFIG.BASE_URL}/stories`,
@@ -46,7 +47,7 @@ const Api = {
 
   async getStories() {
     try {
-      const token = localStorage.getItem('token');
+      const token = getAccessToken();
       const response = await fetch(ENDPOINTS.STORIES, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -62,7 +63,7 @@ const Api = {
 
   async getStoryDetail(id) {
     try {
-      const token = localStorage.getItem('token');
+      const token = getAccessToken();
       const response = await fetch(`${ENDPOINTS.STORIES}/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -78,7 +79,7 @@ const Api = {
 
   async addStory({ description, photo, lat = null, lon = null }) {
     try {
-      const token = localStorage.getItem('token');
+      const token = getAccessToken();
       const formData = new FormData();
       formData.append('description', description);
       formData.append('photo', photo);
@@ -123,7 +124,7 @@ const Api = {
 
   async subscribeNotif(subscription) {
     try {
-      const token = localStorage.getItem('token');
+      const token = getAccessToken();
       const response = await fetch(ENDPOINTS.SUBSCRIBE, {
         method: 'POST',
         headers: {
@@ -142,7 +143,7 @@ const Api = {
 
   async unsubscribeNotif(endpoint) {
     try {
-      const token = localStorage.getItem('token');
+      const token = getAccessToken();
       const response = await fetch(ENDPOINTS.SUBSCRIBE, {
         method: 'DELETE',
         headers: {
