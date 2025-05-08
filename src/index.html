@@ -21,13 +21,13 @@
 
           <nav id="navigation-drawer" class="navigation-drawer">
             <ul id="nav-list" class="nav-list">
-              <li><a href="#/">Beranda</a></li>
-              <li><a href="#/about">About</a></li>
-              <li><a href="#/login">Login</a></li>
-              <li><a href="#/register">Register</a></li>
-              <li><a href="#" id="logout-btn">Logout</a></li>
-              <li><a href="#/new">Tambah Story</a></li>
-              <li><a href="#/guest">Tambah Story (as guest)</a></li>
+              <li class="user-only"><a href="#/">Beranda</a></li>
+              <li class="auth-only"><a href="#/login">Login</a></li>
+              <li class="auth-only"><a href="#/register">Register</a></li>
+              <li class="user-only"><a href="#/new">Add Story</a></li>
+              <li class="auth-only"><a href="#/guest">Add Story (as guest)</a></li>
+              <li class="user-only"><a href="#/about">About</a></li>
+              <li class="user-only"><a href="#" id="logout-btn">Logout</a></li>
               
             </ul>
           </nav>
@@ -39,7 +39,7 @@
       <main id="main-content" class="main-content"></main>
       <footer>
         <p>© 2025 Story Dicoding App. All rights reserved.</p>
-        <p>Created by Ali Tawfiqur Rahman</p>
+        <p>Created with <span>🧡</span> by Ali Tawfiqur Rahman 🚀</p>
       </footer>
     </div>
   </body>
