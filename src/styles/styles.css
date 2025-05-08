@@ -191,6 +191,13 @@ form button:hover {
   cursor: pointer;
 }
 
+.story-card:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 4px;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+
+
 .story-card:hover {
   transform: translateY(-3px);
 }

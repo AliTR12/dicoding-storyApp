@@ -122,16 +122,20 @@ const Api = {
   },
   
 
-  async subscribeNotif(subscription) {
+  async subscribePushNotification({ endpoint, keys: { p256dh, auth } }) {
     try {
       const token = getAccessToken();
+      const data = JSON.stringify({
+        endpoint,
+        keys: { p256dh, auth },
+      });
       const response = await fetch(ENDPOINTS.SUBSCRIBE, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(subscription),
+        body: data,
       });
 
       const result = await response.json();
@@ -141,16 +145,17 @@ const Api = {
     }
   },
 
-  async unsubscribeNotif(endpoint) {
+  async unsubscribePushNotification({endpoint}) {
     try {
       const token = getAccessToken();
+      const data = JSON.stringify({ endpoint });
       const response = await fetch(ENDPOINTS.SUBSCRIBE, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify({ endpoint }),
+        body: data,
       });
 
       const result = await response.json();
