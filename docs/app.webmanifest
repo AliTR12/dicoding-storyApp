@@ -89,7 +89,7 @@
       "name": "Story Baru",
       "short_name": "Baru",
       "description": "Membuat Story baru.",
-      "url": "/?source=pwa#/new",
+      "url": "/dicoding-storyApp/?source=pwa#/new",
       "icons": [
         {
           "src": "images/icons/add-x512.png",
@@ -102,7 +102,7 @@
       "name": "Story Tersimpan",
       "short_name": "Tersimpan",
       "description": "Lihat daftar Story tersimpan.",
-      "url": "/?source=pwa#/bookmark",
+      "url": "/dicoding-storyApp/?source=pwa#/bookmark",
       "icons": [
         {
           "src": "images/icons/bookmark-x512.png",
