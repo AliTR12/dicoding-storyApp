@@ -8,6 +8,8 @@ class HomePage {
 
         <div id="homeMap" style="height: 300px; margin-bottom: 20px;"></div>
         <div id="storyList" class="story-grid"></div>
+
+        
       </section>
     `;
   }

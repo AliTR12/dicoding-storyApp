@@ -24,7 +24,7 @@ class LoginPresenter {
           localStorage.setItem('name', response.loginResult.name);
           window.location.hash = '#/';
         } else {
-          alert('❌ ' + response.message);
+          showErrorAlert('❌ ' + response.message);
         }
       });
     } catch (error) {

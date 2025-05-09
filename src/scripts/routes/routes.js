@@ -6,6 +6,7 @@ import DetailPage from '../pages/detail/detail-page';
 import NewPage from '../pages/new/new-page';
 import GuestPage from '../pages/guest/guest-page';
 import BookmarkPage from '../pages/bookmark/bookmark-page';
+import NotFoundPage from '../pages/not-found/not-found';
 import { checkAuthenticatedRoute, checkUnauthenticatedRouteOnly } from '../utils/auth';
 
 const routes = {
@@ -18,6 +19,9 @@ const routes = {
   '/detail/:id': () => checkAuthenticatedRoute(new DetailPage()),
   '/new': () => checkAuthenticatedRoute(new NewPage()),
   '/bookmark': () => checkAuthenticatedRoute(new BookmarkPage()),
+
+  // Catch-all route for unmatched paths
+  '*': () => new NotFoundPage(),
 };
 
 export default routes;

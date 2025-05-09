@@ -38,6 +38,9 @@ class App {
 
   async #setupPushNotification() {
     const pushNotificationTools = document.getElementById('push-notification-tools');
+    if (!pushNotificationTools) {
+      return;
+    }
     const isSubscribed = await isCurrentPushSubscriptionAvailable();
     if (isSubscribed) {
       pushNotificationTools.innerHTML = generateUnsubscribeButtonTemplate();
@@ -63,13 +66,15 @@ class App {
   async renderPage() {
     const url = getActiveRoute();
     console.log("💡 Route parsed:", url);
-    const pageFactory = routes[url];
-    const page =  await pageFactory();
+    let pageFactory = routes[url];
 
-    if (!page) {
-      this.#content.innerHTML = `<h1>404 Halaman Tidak Ditemukan</h1>`;
-      return;
+    // If no matching route, use catch-all '*' route if defined
+    if (!pageFactory && routes['*']) {
+      pageFactory = routes['*'];
     }
+
+    const page = await pageFactory();
+
     if (document.startViewTransition) {
       await document.startViewTransition(async () => {
         this.#content.innerHTML = await page.render();
@@ -79,13 +84,14 @@ class App {
           this.#setupPushNotification();
         }
       });
-    }
-    this.#content.innerHTML = await page.render();
-    await renderNavBasedOnAuth(this.#navigationDrawer);
-    await page.afterRender();
+    } else {
+      this.#content.innerHTML = await page.render();
+      await renderNavBasedOnAuth(this.#navigationDrawer);
+      await page.afterRender();
 
-    if (isServiceWorkerAvailable()) {
-      this.#setupPushNotification();
+      if (isServiceWorkerAvailable()) {
+        this.#setupPushNotification();
+      }
     }
   }
 }

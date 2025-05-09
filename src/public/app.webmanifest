@@ -1,7 +1,7 @@
 {
   "id": "/#/",
-  "start_url": "/#/",
-  "scope": "/",
+  "start_url": "/dicoding-storyApp/#/",
+  "scope": "/dicoding-storyApp/",
   "name": "DicodingStory App",
   "short_name": "DicodingStory",
   "description": "Aplikasi berbagi cerita untuk para pengembang dan pecinta teknologi. Dapatkan inspirasi, bagikan pengalaman, dan terhubung dengan komunitas teknologi Indonesia.",

@@ -410,3 +410,7 @@ footer {
   height: 32px;
   margin-right: 10px;
 }
+
+.not-found p {
+  margin-bottom: 20px;
+}

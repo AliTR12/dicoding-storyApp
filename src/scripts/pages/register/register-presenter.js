@@ -18,7 +18,7 @@ class RegisterPresenter {
       const response = await Api.register(name, email, password);
       if (!response.error) {
         hideLoadingAlert();
-        showSuccessAlert('Registrasi berhasil! Silakan login.');
+        await showSuccessAlert('Registrasi berhasil! Silakan login.');
         window.location.hash = '#/login';
       } else {
         showErrorAlert('❌ ' + response.message);

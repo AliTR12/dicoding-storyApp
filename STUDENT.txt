@@ -1,4 +1,4 @@
 APP_URL=http://localhost:9000
 MAP_SERVICE_API_KEY=-
 
-LINK_APLIKASI = 
+LINK_APLIKASI = https://alitr12.github.io/dicoding-storyApp/
