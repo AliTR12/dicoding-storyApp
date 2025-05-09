@@ -4,14 +4,26 @@ import "../styles/styles.css";
 import App from "./pages/app";
 import Camera from "./utils/camera";
 import { registerServiceWorker } from "./utils";
+import { showConfirmationAlert, showSuccessAlert, showLoadingAlert, hideLoadingAlert } from "./utils/alerts";
 
 document.addEventListener("DOMContentLoaded", async () => {
   const logoutBtn = document.getElementById("logout-btn");
   if (logoutBtn) {
     logoutBtn.addEventListener("click", () => {
-      localStorage.removeItem("token");
-      localStorage.removeItem("name");
-      window.location.hash = "#/login";
+      showConfirmationAlert(
+        "Yakin ingin logout?",
+        () => {
+          showLoadingAlert();
+          localStorage.removeItem("token");
+          localStorage.removeItem("name");
+          hideLoadingAlert();
+          showSuccessAlert("Anda telah keluar dari aplikasi.");
+          window.location.hash = "#/login";
+        },
+        () => {
+          console.log("Logout dibatalkan.");
+        }
+      );
     });
   }
 

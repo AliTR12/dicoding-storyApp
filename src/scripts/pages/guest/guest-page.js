@@ -21,7 +21,7 @@ class GuestPage {
   <button type="button" id="captureBtn">Ambil Gambar</button>
   <select id="cameraSelect">Pilih Kamera</select>
   <video id="video" autoplay></video>
-  <canvas id="canvas" style="display:none;"></canvas>
+  <canvas id="canvas" style="display:none; width: 0; height: 0;"></canvas>
 <img id="photoPreview" style="margin-top: 10px; border-radius: 8px; width: 100%;" />
 
 

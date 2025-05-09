@@ -5,7 +5,6 @@ class NewPage {
     return `
       <section class="container">
         <h2>Tambah Story</h2>
-
         <label>Ambil Lokasi</label>
 <div id="map" style="height: 300px;"></div>
 <p>Latitude: <span id="latDisplay"></span> | Longitude: <span id="lonDisplay"></span></p>
@@ -21,7 +20,8 @@ class NewPage {
   <button type="button" id="captureBtn">Ambil Gambar</button>
   <select id="cameraSelect">Pilih Kamera</select>
   <video id="video" autoplay></video>
-  <canvas id="canvas" style="display:none;"></canvas>
+  <canvas id="canvas" style="display:none; width: 0; height: 0;"></canvas>
+
 <img id="photoPreview" style="margin-top: 10px; border-radius: 8px; width: 100%;" />
 
 

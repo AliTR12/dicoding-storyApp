@@ -1,5 +1,7 @@
 import Api from "../../data/api.js";
 import Camera from "../../utils/camera.js";
+import { showLoadingAlert, hideLoadingAlert, showSuccessAlert, showErrorAlert } from "../../utils/alerts.js";
+
 const L = window.L;
 const customIcon = L.icon({
   iconUrl: './images/icon-map.png', // path dari root public folder
@@ -14,10 +16,8 @@ const customIcon = L.icon({
 class NewPresenter {
   constructor() {
     this.form = document.getElementById("newStoryForm");
-    // this.video = document.getElementById('video');
     this.canvas = document.getElementById("canvas");
     this.imageInput = document.getElementById("imageInput");
-    // this.camera = new Camera(this.video);
 
     this.lat = null;
     this.lon = null;
@@ -44,9 +44,20 @@ class NewPresenter {
       if (this.cameraIsOn) {
         this.camera.stop();
         this.cameraIsOn = false;
+        this.video.style.display = "none";
       } else {
         await this.camera.launch();
         this.cameraIsOn = true;
+        this.video.style.display = "block";
+      }
+    });
+
+    this.imageInput.addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        this.photoBlob = file; // penting buat submit!
+        const previewUrl = URL.createObjectURL(file);
+        document.getElementById("photoPreview").src = previewUrl;
       }
     });
 
@@ -79,6 +90,7 @@ class NewPresenter {
   _initFormSubmit() {
     this.form.addEventListener("submit", async (e) => {
       e.preventDefault();
+      showLoadingAlert();
 
       const description = document.getElementById("description").value;
       const photo = this.photoBlob || this.imageInput.files[0];
@@ -98,12 +110,14 @@ class NewPresenter {
       lat: this.lat,
       lon: this.lon,
     });
-
+    hideLoadingAlert();
     if (!result.error) {
-      alert("✅ Story berhasil ditambahkan!");
-      window.location.hash = "#/";
+      showSuccessAlert("✅ Story berhasil ditambahkan!");
+      setTimeout(() => {
+        window.location.hash = "#/";
+      }, 1500); // delay 1.5 detik biar alert sempat muncul
     } else {
-      alert("❌ " + result.message);
+      showErrorAlert("❌ " + result.message);
     }
   }
 

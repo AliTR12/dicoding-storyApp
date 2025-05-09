@@ -4,10 +4,12 @@ class DetailPage {
   async render() {
     return `
       <section class="container">
-        <h2>Detail Story</h2>
+      <h2>Detail Story</h2>
+      <div id="storyMapContainer" style="display: none; margin-top: 20px;">
+          <div id="storyMap" style="height: 300px;"></div>
+        </div>
         <div id="detailContainer"></div>
         <div id="storyDetail"></div>
-        <div id="storyMap" style="height: 300px; margin-top: 20px;"></div>
       </section>
     `;
   }

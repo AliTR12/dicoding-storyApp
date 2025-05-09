@@ -5,6 +5,7 @@ import RegisterPage from '../pages/register/register-page';
 import DetailPage from '../pages/detail/detail-page';
 import NewPage from '../pages/new/new-page';
 import GuestPage from '../pages/guest/guest-page';
+import BookmarkPage from '../pages/bookmark/bookmark-page';
 import { checkAuthenticatedRoute, checkUnauthenticatedRouteOnly } from '../utils/auth';
 
 const routes = {
@@ -16,6 +17,7 @@ const routes = {
   '/about': () => checkAuthenticatedRoute(new AboutPage()),
   '/detail/:id': () => checkAuthenticatedRoute(new DetailPage()),
   '/new': () => checkAuthenticatedRoute(new NewPage()),
+  '/bookmark': () => checkAuthenticatedRoute(new BookmarkPage()),
 };
 
 export default routes;

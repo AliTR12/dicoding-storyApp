@@ -44,6 +44,7 @@ header {
   z-index: 1;
   height: 300px;
   width: 100%;
+  margin-bottom: 20px;
 }
 
 .navigation-drawer {
@@ -84,7 +85,6 @@ header {
 
 .nav-list {
   list-style: none;
-
   display: flex;
   flex-direction: column;
   gap: 10px 20px;
@@ -92,15 +92,16 @@ header {
 
 .nav-list li a {
   padding: 6px 10px;
-
+  
   display: block;
   
   color: #333;
   text-decoration: none;
+  transition: 0.5s;
 }
 
 .nav-list li a:hover {
-  text-decoration: underline;
+  font-weight: bold;
 }
 
 /* MAIN */
@@ -161,7 +162,7 @@ form input {
   margin-bottom: 16px;
 }
 
-form button {
+form button, .btn {
   width: 100%;
   background: #007bff;
   color: white;
@@ -172,6 +173,11 @@ form button {
 }
 
 form button:hover {
+  background: #0056b3;
+  cursor: pointer;
+}
+
+.btn:hover {
   background: #0056b3;
   cursor: pointer;
 }
@@ -191,11 +197,11 @@ form button:hover {
   cursor: pointer;
 }
 
-.story-card:focus {
+/* .story-card:focus {
   outline: 2px solid #007bff;
   outline-offset: 4px;
   box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
-}
+} */
 
 
 .story-card:hover {
@@ -213,19 +219,32 @@ form button:hover {
 }
 
 .story-name {
-  font-size: 16px;
+  font-size: 22px;
   font-weight: bold;
+  margin-bottom: 8px;
 }
 
 .story-caption {
-  font-size: 14px;
+  font-size: 18px;
   color: #444;
+  margin-bottom: 10px;
 }
 
-video, canvas {
-  width: 100%;
+
+video {
+  max-width: 100%;
   border-radius: 8px;
   margin-bottom: 12px;
+  margin-top: 12px;
+  display: none;
+}
+
+#canvas {
+  display: block;
+  margin-bottom: 12px;
+  max-width: 400px;
+  max-height: 300px;
+  object-fit: contain; /* atau cover kalau kamu mau isi penuh */
 }
 
 textarea {
@@ -247,6 +266,25 @@ textarea {
 @media (max-width: 600px) {
   .story-grid {
     grid-template-columns: 1fr !important;
+  }
+
+  .story-card {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .story-card img {
+    width: 100%;
+    height: auto;
+    max-height: 200px; /* ✅ Biar gak terlalu tinggi */
+    object-fit: cover;
+    border-radius: 8px;
+    aspect-ratio: 4 / 3;
+  }
+
+  .story-name, .story-caption {
+    font-size: 16px;
+    word-wrap: break-word;
   }
 
   form {
@@ -294,9 +332,9 @@ p {
   margin-bottom: 1rem;
 }
 
-html, body {
-  height: 100%;
-  margin: 0;
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .wrapper {
@@ -321,4 +359,54 @@ footer {
 
 .auth-only.hidden, .user-only.hidden {
   display: none !important;
+}
+
+#logout-btn {
+  color: red;
+}
+
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.loader {
+  border: 8px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 8px solid #3498db;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.name-icon-app {
+  display: flex;
+  align-items: center;
+}
+
+.navbar-brand {
+  font-size: 24px;
+  font-weight: bold;
+  color: #ffffff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+.navbar-icon {
+  width: 32px;
+  height: 32px;
+  margin-right: 10px;
 }

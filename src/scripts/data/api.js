@@ -1,12 +1,12 @@
-import CONFIG from '../config';
+import { BASE_URL} from '../config';
 import { getAccessToken } from '../utils/auth';
 
 const ENDPOINTS = {
-  STORIES: `${CONFIG.BASE_URL}/stories`,
-  REGISTER: `${CONFIG.BASE_URL}/register`,
-  LOGIN: `${CONFIG.BASE_URL}/login`,
-  ADD_STORY: `${CONFIG.BASE_URL}/stories`,
-  SUBSCRIBE: `${CONFIG.BASE_URL}/notifications/subscribe`,
+  STORIES: `${BASE_URL}/stories`,
+  REGISTER: `${BASE_URL}/register`,
+  LOGIN: `${BASE_URL}/login`,
+  ADD_STORY: `${BASE_URL}/stories`,
+  SUBSCRIBE: `${BASE_URL}/notifications/subscribe`,
 };
 
 
@@ -109,7 +109,7 @@ const Api = {
       if (lat) formData.append('lat', lat);
       if (lon) formData.append('lon', lon);
   
-      const response = await fetch(`${CONFIG.BASE_URL}/stories/guest`, {
+      const response = await fetch(`${BASE_URL}/stories/guest`, {
         method: 'POST',
         body: formData,
       });

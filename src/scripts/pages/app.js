@@ -4,7 +4,7 @@ import { renderNavBasedOnAuth } from "../utils/ui";
 import { generateSubscribeButtonTemplate, generateUnsubscribeButtonTemplate } from "../templates";
 import { isServiceWorkerAvailable } from "../utils";
 import { subscribe, isCurrentPushSubscriptionAvailable, unsubscribe } from "../utils/notification-helper";
-
+import { showLoadingAlert, showErrorAlert, showSuccessAlert, hideLoadingAlert } from "../utils/alerts";
 class App {
   #content = null;
   #drawerButton = null;
@@ -42,15 +42,19 @@ class App {
     if (isSubscribed) {
       pushNotificationTools.innerHTML = generateUnsubscribeButtonTemplate();
       document.getElementById('unsubscribe-button').addEventListener('click', () => {
+        showLoadingAlert();
         unsubscribe().finally(() => {
           this.#setupPushNotification();
+          hideLoadingAlert();
         });
       });
     } else {
       pushNotificationTools.innerHTML = generateSubscribeButtonTemplate();
       document.getElementById('subscribe-button').addEventListener('click', () => {
+        showLoadingAlert();
         subscribe().finally(() => {
           this.#setupPushNotification();
+          hideLoadingAlert();
         });
       });
     }
